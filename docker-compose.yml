@@ -1,0 +1,24 @@
+version: '3.5'
+
+services:
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    restart: always
+
+  ollama-webui:
+    image: ghcr.io/ollama-webui/ollama-webui:main
+    ports:
+      - "3000:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ollama-webui:/app/backend/data
+    restart: always
+
+volumes:
+  ollama:
+  ollama-webui:
