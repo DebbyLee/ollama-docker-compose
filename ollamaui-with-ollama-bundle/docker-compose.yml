@@ -1,16 +1,8 @@
 version: '3.5'
 
 services:
-  ollama:
-    image: ollama/ollama
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama:/root/.ollama
-    restart: always
-
   ollama-webui:
-    image: ghcr.io/ollama-webui/ollama-webui:main
+    image: ghcr.io/open-webui/open-webui:ollama
     ports:
       - "3000:8080"
     extra_hosts:
@@ -20,5 +12,4 @@ services:
     restart: always
 
 volumes:
-  ollama:
   ollama-webui:

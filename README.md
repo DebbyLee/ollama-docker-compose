@@ -1,56 +1,5 @@
-# Docker Compose Setup for Ollama and Ollama-WebUI
-This repository provides a Docker Compose setup for running two services: ollama and ollama-webui. The ollama service is responsible for the main application, while ollama-webui provides a web user interface for the application.
+This repo contains two Docker Compose file examples that demonstrate how to use Ollama UI and Ollama.
 
-### Prerequisites
-Make sure you have Docker and Docker Compose installed on your machine.
+The `docker-compose.yml` in the `ollama-ollamaui` directory is an example of using Ollama UI and Ollama as separate images.
 
-[Docker Installation Guide](https://docs.docker.com/engine/install/)
-[Docker Compose Installation Guide](https://docs.docker.com/compose/reference/)
-
-### Getting Started
-Follow these steps to get the services up and running:
-
-1. Clone the Repository
-```
-git clone <repository-url>
-cd <repository-directory>
-```
-2. Start the Services
-Use Docker Compose to start the services:
-
-```
-docker-compose up -d
-```
-This command will start both ollama and ollama-webui services in detached mode.
-
-### Services
-Ollama
-- Image: ollama/ollama
-- Ports: 11434:11434
-- Volumes: ollama:/root/.ollama
-- Restart Policy: Always
-Ollama-WebUI
-- Image: ghcr.io/ollama-webui/ollama-webui:main
-- Ports: 3000:8080
-- Extra Hosts: host.docker.internal:host-gateway
-- Volumes: ollama-webui:/app/backend/data
-- Restart Policy: Always
-
-
-### Pull the images
-Find the libray that you would like to pull from [Ollama library](https://ollama.com/library)
-Assuming that you would like to pull llama3.1
-1. Pull from Ollama UI via http://localhost:3000
-2. Using docker exec to pull the image
-```
-docker exec -it ollama-docker-compose-ollama-1 ollama pull llama3.1
-```
-3. Using docker compose exec to pull the image
-```
-docker compose exec ollama ollama pull llama3.1
-```
-
-### Stop the services
-```
-docker-compose down
-```
+The `docker-compose.yml` in the `ollama-with-ollama-bundle` directory is an example that uses a single container image bundling Open WebUI with Ollama, allowing for a streamlined setup via a single command.
